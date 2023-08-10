@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <title>Web API Example</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script>
+      $(() => {
+        let id = "";
+        $("#search").on("click", (e) => {
+          id = $("#id").val();
+          const uri = `http://localhost:8000/users/${id}`;
+          fetch(uri)
+            .then((res) => res.json())
+            .then((json) => {
+              $("#name").html(json.user);
+            });
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <label>ID:</label><input type="text" id="id" />
+    <button id="search">検索</button>
+    <h3 id="name"></h3>
+  </body>
+</html>
